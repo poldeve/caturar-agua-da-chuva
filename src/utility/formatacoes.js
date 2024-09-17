@@ -8,12 +8,18 @@ module.exports = {
     
         newDate.setHours(hours - offset);
     
-        return this.formataData(newDate);   
-    },
-    formataData: function(data = new Date()) {
-        let dataFormatada = '';
-        dataFormatada = dataFormatada.concat(data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear());
-
-        return dataFormatada;
+        return formataData(newDate);   
     }
 };
+
+function formataData(data = new Date()) {
+    let dataFormatada = '';
+
+    if(data.getMonth() < 10) {
+        dataFormatada = dataFormatada.concat(data.getFullYear() + '-0' + (data.getMonth()+1) + '-' + data.getDate());
+    } else {
+        dataFormatada = dataFormatada.concat(data.getFullYear() + '-' + (data.getMonth()+1) + '-' + data.getDate());
+    }
+    
+    return dataFormatada;
+}
